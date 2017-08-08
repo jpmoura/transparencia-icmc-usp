@@ -1,0 +1,300 @@
+% !TeX spellcheck = pt_BR
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Transparência para aparesentações e aulas da Universidade Federal de Ouro Preto (UFOP) do Departamento de Sistemas de Informação e Computação (DECSI).
+%
+% Observação:
+%	É necessário que seja criada uma pasta Imagens e a mesma deve possuir uma imagem chamda Logotipo de qualquer extensão (preferencialmnete uma que permita transparência e.g. PNG)
+% 	para que seja possíel incluir o logotipo da UFOP no canto inferior direito de todas as transparências.
+%
+%
+% LaTeX Template
+% Versão 1.0 (27/10/15)
+%
+% Autor Original:
+% João Pedro Santos de Moura 
+% (https://github.com/jpmoura)
+%
+% Licença:
+% CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/)
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%	PACOTES E CONFIGURAÇÃO
+%----------------------------------------------------------------------------------------
+
+% Use o parâmetro 'handout' para gerar várias tansparências por páginas.
+%\documentclass[handout,red]{beamer}
+\documentclass[darkblue]{beamer}
+
+%\usepackage{pgfpages}			% Use este pacote caso utilize o parâmtro handout
+\usepackage[portuguese]{babel}	% Pacote de vocabulário/internacionalização
+\usepackage[utf8]{inputenc}		% Pacote para codificação em UTF-8 do texto de entrada
+\usepackage{times} 				% Pacote para sar a fonte Times New Roman como fonte
+\usepackage[T1]{fontenc}		% Pacote para codificação apropriada da fonte em artefatos DVI, PS e PDF
+\usepackage{hyperref}			% Pacote para referência cruzada e produzir hiperlinks no documento gereado
+\usepackage[alf]{abntex2cite}	% Citações padrão ABNT
+\usepackage{tikz} 				% Necessário para uso de marca d'água caso requerido
+\usepackage{listings}			% Pacote para inserção de códigos-fonte de arquivos externos
+\usepackage{xcolor}         	% Pacote de cores
+
+% Definição de estilo
+
+\usetheme{Madrid} 
+%\setbeamertemplate{background}{\tikz[overlay,remember picture]\node[opacity=0.4]at (current page.center){\includegraphics[width=2cm]{Imagens/Logomarca}};} % Marca d'água por trás do texto
+
+% Definição de fonte
+\usefonttheme[onlylarge]{structurebold}
+\setbeamerfont*{frametitle}{size=\normalsize,series=\bfseries}
+
+% Definição de cores
+\definecolor{icmcAzulLogo}{RGB}{96,111,132}
+\definecolor{icmcAzulSite}{RGB}{2,39,87}
+\definecolor{icmcAzulBorda}{RGB}{36,60,103}
+
+% Range de cores do template
+\setbeamercolor{structure}{fg=icmcAzulSite!90!icmcAzulBorda}
+
+% Declaração alternativa da palheta de cores do modelo
+%\mode<presentation>
+%{
+%	\usetheme{Madrid}
+%	\setbeamercolor*{palette primary}{use=structure,fg=white,bg=icmcAzulSite}
+%	\setbeamercolor*{palette secondary}{use=structure,fg=white,bg=icmcAzulLogo}
+%	\setbeamercolor*{palette tertiary}{use=structure,fg=white,bg=icmcAzulBorda}
+%}
+
+\setbeamertemplate{navigation symbols}{} % Símbolos de navegação próximo ao rodapé, TRUE entre colchetes significa ativado e vazio significa desativado
+
+% Definição da logo, tanto caminho quanto tamanho
+\pgfdeclareimage[height=1cm]{logo}{Imagens/Logotipo}
+\logo{\pgfuseimage{logo}}
+
+
+% Autor, título, e instituto
+
+% Caso o título seja muito grande, passe como parâmetro entre colchetes uma versão reduzida do título
+\title{Título}
+%\title[titulo de rodapé]{Título}
+
+% Caso o nome seja longo ou sejam vários autores, passe o(s) nome(s) reduzido(s) entre colchetes, como no título
+\author{Autor}
+%\author[Nomes no rodapé]{
+%	Nomes dos autores\\
+%	Vários nomes podem ser usados\\
+%	Usando Quebra de linha}
+
+\institute[] % Nomear o campo entre colcheter com a sigla da instituição. Ex.: UFOP. Ela aparecerá após o nome no 
+{
+	% Numerar entre chaves caso exista mais de uma instituição e use a numeração para referenciar a qual instituição pertence cada autor cajo sejam vários
+	\inst{}
+	Departamento de Ciência da Computação\\
+	Instituto de Ciências Matématicas e de Computação\\
+	Universidade de São Paulo
+}
+
+% Substitua o texto pela data desejada. Use o comando \today para usar a data da compilação.
+\date{Data de apresentação}
+
+
+%----------------------------------------------------------------------------------------
+%	COMANDOS
+%----------------------------------------------------------------------------------------
+% Comando para cirar uma versão que possa ser impressa usando a opção handout como parâmtro do beamer. Nessa configuração ele irá gerar várias transparências por página para ser disponibilizada ao público-alvo.
+% Lembre-se de usar o parãmtro 'handout' em documentclass, separado de 'red' por virgula e usar o pacote 'pdfpages'.
+
+%\pgfpagesuselayout{2 on 1}[a4paper,border shrink=5mm] % Gera duas transparências por página 
+%\pgfpagesuselayout{4 on 1}[a4paper,border shrink=5mm,landscape] % Gera quatro transparências por página
+
+% Definição de cores em RGB
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+\definecolor{verde}{rgb}{0.25,0.5,0.35}
+\definecolor{jpurple}{rgb}{0.5,0,0.35}
+\definecolor{jstring}{RGB}{204,102,0}
+
+% Parametrizando o estilo da linguagem Java usando pacote Listings
+\lstset{
+	language=Java,
+	basicstyle=\ttfamily\small, 
+	keywordstyle=\color{jpurple}\bfseries,
+	stringstyle=\color{jstring},
+	commentstyle=\color{verde},
+	morecomment=[s][\color{blue}]{/**}{*/},
+	extendedchars=true, 
+	showspaces=false, 
+	showstringspaces=false, 
+	numbers=left,
+	frame=tb,
+	numberstyle=\tiny,
+	breaklines=true, 
+	backgroundcolor=\color{white}, 
+	breakautoindent=true, 
+	captionpos=b,
+	xleftmargin=0pt,
+	tabsize=4
+}
+
+%----------------------------------------------------------------------------------------
+%	DOCUMENTO
+%----------------------------------------------------------------------------------------
+
+
+\begin{document}
+	% Labels são necessários para usar hyperlinks junto com botões do pacote beamer.
+	\label{Título}
+	
+	\begin{frame}
+		
+		\titlepage
+	\end{frame}
+	
+	\begin{frame}[allowframebreaks]{Roteiro} % A opção 'allowframebrakes' possibilita que o índice seja divido em mais de uma transparência
+		\tableofcontents
+	\end{frame}
+	
+	\section{Introdução}
+		\begin{frame}{Introdução}
+			Este é um exemplo do artefato gerado a partir desse modelo. Neste modelo você encontra
+			 também exemplos de uso de recursos do \textit{beamer}.
+		\end{frame}
+	
+	\label{amb1}	
+	\section{Ambientes}
+		\begin{frame}{Exemplos de ambientes I}
+			\begin{block}{Exemplo de bloco ordinário}
+				Corpo de bloco normal.
+			\end{block}
+			
+			\begin{alertblock}{Bloco de alerta}
+				Corpo de um bloco de alerta.
+			\end{alertblock}
+			
+			\begin{exampleblock}{Exemplo de ambiente \textit{exampleblock}}
+				Corpo do ambiente ``examplebox".
+			\end{exampleblock}
+			
+			\begin{example}
+				A diferença entre um ambiente \textit{example} e um ambiente \textit{examplebox} é que
+				no ambiente \textit{examplebox} o título é customizável enquanto no ambiente \textit{example} não. 
+			\end{example}
+			
+		\end{frame}
+		
+		\label{amb2}
+		\begin{frame}{Exemplos de ambientes II}
+			Note que igualmente ao que acontece com o bloco \textit{example} os títulos dos blocos \textit{definition}, \textit{theorem} e \textit{corollary} não são traduzidos pelo pacote \textit{babel}.
+			
+			\begin{definition}
+				O quadrado da hipotenusa é igual a soma do quadrado dos catetos. 
+			\end{definition}
+			
+			\begin{theorem}[Pitágoras]
+				$ a^2 + b^2 = c^2$
+			\end{theorem}
+			
+			\begin{corollary}
+				$ x + y = y + x  $
+			\end{corollary}
+			
+			\begin{proof}
+				$\omega +\phi = \epsilon $
+			\end{proof}
+		\end{frame}
+		
+		\begin{frame}{Exemplos de ambientes III}
+			Ambiente \textit{description}:
+			
+			\begin{description}
+				\item[API] Application Programming Interface
+				\item[LAN] Local Area Network
+				\item[ASCII] American Standard Code for Information Interchange
+			\end{description}
+		\end{frame}
+		
+		\section{Botões}
+			\begin{frame}{Botões}
+				O pacote \textit{beamer} permite o uso de botões junto com \textit{hyperlinks}.
+				
+				\begin{center}
+					\hyperlink{amb1}{\beamergotobutton{Botão de \textit{vá para}}}\\
+					\hyperlink{amb2}{\beamerskipbutton{Botão de avanço}}\\
+					\hyperlink{title}{\beamerreturnbutton{Botão de retorno}}\\
+					\hyperlink{perg}{\beamerbutton{Botão ordinário}}
+				\end{center}				
+			\end{frame}
+		
+		\section{Colunas}
+			\begin{frame}{Usando colunas}
+				Texto que existe antes do ambiente \textit{columns}
+				
+				\vspace*{5mm}
+				
+				\begin{columns}
+					\column{0.5\textwidth}
+					Texto na coluna 1\\
+					Texto na coluna 1\\
+					Texto na coluna 1\\
+					Texto na coluna 1\\
+					
+					\column{0.5\textwidth}
+					Texto na coluna 2\\
+					Texto na coluna 2\\
+					Texto na coluna 2\\
+					Texto na coluna 2
+				\end{columns}
+				
+				\vspace*{5mm}
+				
+				Fim das colunas. Pode-se inserir imagens, tabelas, listas, etc. dentro do ambiente \textit{columns}
+			\end{frame}
+		
+		\section{Tabelas}
+			\begin{frame}{Tabelas}
+				Exemplo de tabela:
+				\begin{table}
+					\begin{tabular}{l | c | c | c | c }
+						Competidor & Nado & Ciclismo & Corrida & Total \\
+						\hline \hline
+						João & 13:04 & 24:15 & 18:34 & 55:53 \\ 
+						Naldo & 8:00 & 22:45 & 23:02 & 53:47\\
+						Alex & 14:00 & 28:00 & n/a & n/a\\
+						Sara & 9:22 & 21:10 & 24:03 & 54:35 
+					\end{tabular}
+					\caption{Resultados de Triatlon}
+				\end{table}
+			\end{frame}
+			
+		\section{Códigos}
+			\subsection{Usando pacote listings}
+				\begin{frame}{Código-fonte usando pacote \textit{listings}}
+					Exemplo do uso do pacote \textit{listings} para inserir códigos-fonte externos.
+					O código também pode ser escrito manualmente dentro do próprio arquivo Tex.
+					Evite usar caracteres especiais e letras acentuadas, pois podem não ser exibidas.
+				
+					\lstinputlisting[language=java]{codigo.java}
+				\end{frame}				
+	
+	% Transparências Finais
+	\begin{frame}
+		\label{perg}
+		\begin{center} 
+			\Huge Perguntas?
+		\end{center} 
+	\end{frame}
+	
+	\begin{frame}
+		\begin{center} 
+			\Huge Muito Obrigado!
+		\end{center} 
+	\end{frame}
+	
+	
+	\begin{frame}{Referências}
+		\nocite{Tantau2015,Cassidy2013}
+		%\bibliographystyle{plain}   % Alterar o estilo da referência caso necessário
+		\bibliography{referencias}   % Arquivo que contém as transparências
+	\end{frame}
+	
+\end{document}
